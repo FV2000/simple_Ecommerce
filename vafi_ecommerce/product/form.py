@@ -3,6 +3,6 @@ from django.forms import ModelForm
 
 class addProductForm(ModelForm):
     class Meta:
-        model = mProduct
+        model = Product
         fields = '__all__'
-        exclude = ('user_id',)
+        exclude = ('id','user_id',)

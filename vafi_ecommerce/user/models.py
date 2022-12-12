@@ -3,4 +3,5 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 class User(AbstractUser):
-    pass
+    limit = models.IntegerField(default=3)
+    onuse = models.IntegerField(default=0)

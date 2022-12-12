@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-11 00:30+0330\n"
-"PO-Revision-Date: 2022-12-11 00:31+0330\n"
+"POT-Creation-Date: 2022-12-13 00:07+0330\n"
+"PO-Revision-Date: 2022-12-13 00:08+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -18,22 +18,105 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.1\n"
 
-#: .\templates\categories.html:42
+#: .\templates\categories.html:15 .\templates\categories.html:42
 msgid "دسته ها"
 msgstr "Categories"
 
-#: .\templates\categories.html:48
+#: .\templates\categories.html:48 .\templates\product_list.html:49
+#: .\templates\user_products.html:54
 msgid "Language"
 msgstr "Language"
 
+#: .\templates\product_list.html:16 .\templates\user_products.html:16
+msgid "محصولات"
+msgstr "Products"
+
+#: .\templates\user_products.html:87
+msgid "حذف"
+msgstr "Delete"
+
+#: .\templates\user_products.html:104
+#, fuzzy
+#| msgid "دسته ها"
+msgid "دسته"
+msgstr "Categories"
+
+#: .\templates\user_products.html:109
+#, fuzzy
+#| msgid " بارگذاری تصویر"
+msgid "بارگذاری تصویر"
+msgstr "Upload Image"
+
+#: .\templates\user_products.html:116
+msgid " نام محصول"
+msgstr "Product Name"
+
+#: .\templates\user_products.html:121 .\templates\user_products.html:144
 #: .\vafi_ecommerce\settings.py:134
 msgid "فارسی"
 msgstr "Persian"
 
+#: .\templates\user_products.html:126 .\templates\user_products.html:149
 #: .\vafi_ecommerce\settings.py:135
 msgid "انگلیسی"
 msgstr "English"
 
+#: .\templates\user_products.html:131 .\templates\user_products.html:154
 #: .\vafi_ecommerce\settings.py:136
 msgid "عربی"
 msgstr "Arabic"
+
+#: .\templates\user_products.html:139
+#, fuzzy
+#| msgid " توضیحات"
+msgid "توضیحات"
+msgstr "Description"
+
+#: .\templates\user_products.html:162
+#, fuzzy
+#| msgid " قیمت واقعی"
+msgid "قیمت واقعی"
+msgstr "Real Price"
+
+#: .\templates\user_products.html:167 .\templates\user_products.html:191
+#, fuzzy
+#| msgid " ریال"
+msgid "ریال"
+msgstr "Rials"
+
+#: .\templates\user_products.html:172 .\templates\user_products.html:196
+#, fuzzy
+#| msgid " دلار"
+msgid "دلار"
+msgstr "Dollars"
+
+#: .\templates\user_products.html:177 .\templates\user_products.html:201
+#, fuzzy
+#| msgid " ریال عربستان"
+msgid "ریال عربستان"
+msgstr "Arabic Rials"
+
+#: .\templates\user_products.html:186
+#, fuzzy
+#| msgid " قیمت با تخفیف"
+msgid "قیمت با تخفیف"
+msgstr "Discount Price"
+
+#: .\templates\user_products.html:209
+msgid "افزودن محصول"
+msgstr "Add Product"
+
+#, fuzzy
+#~| msgid "فارسی"
+#~ msgid " فارسی"
+#~ msgstr "Persian"
+
+#, fuzzy
+#~| msgid "انگلیسی"
+#~ msgid " انگلیسی"
+#~ msgstr "English"
+
+#, fuzzy
+#~| msgid "عربی"
+#~ msgid " عربی"
+#~ msgstr "Arabic"

@@ -1,0 +1,218 @@
+{% load i18n %}
+
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+<!DOCTYPE html>
+<html lang="en" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous"
+  />
+  <title>{% trans "محصولات" %}</title>
+  <style>
+        h1, h3 {
+          color: #266150;
+        }
+        li {
+          display: inline;
+          text-decoration: none;
+          padding: 5px;
+        }
+        a {
+          text-decoration: none;
+          color: #DDAF94;
+        }
+        a:hover {
+          color: #4F4846;
+        }
+        .active {
+          background-color: #266150;
+          padding: 5px;
+          text-align: right;
+          border-radius: 7px;
+        }
+        img{
+    height:150px;
+    width:auto;/*maintain aspect ratio*/
+    max-width:500px;
+}
+      </style>
+</head>
+<body>
+<div class="container">
+  <h1>{{user.username}}</h1>
+
+  {% get_current_language as CURRENT_LANGUAGE %}
+  {% get_available_languages as AVAILABLE_LANGUAGES %}
+  {% get_language_info_list for AVAILABLE_LANGUAGES as languages %}
+  <div class="languages">
+    <p>{% trans "Language" %}:</p>
+    <ul class="languages">
+      {% for language in languages %}
+      <li>
+        <a href="/{{language.code }}/userproduct/{{user.id }}"
+           {% if language.code == CURRENT_LANGUAGE %} class="active"{% endif %}>
+          {{ language.name_local }}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <form enctype="multipart/form-data" action="{% url 'product:deleteproduct'  user.id %}" method="post" >
+
+    {% csrf_token %}
+    {% for p in products %}
+    <div style="display: flex; flex-direction: row">
+      <div style="display: flex; flex-direction: row">
+
+        <div class="card p-4">
+
+          <a href="#">
+            <img src="{{p.image_url.url}}" alt="{{p.name}}" >
+            <h2>
+              {{ p.name }}
+            </h2>
+            <h3>
+              {{ p.user_id }}
+            </h3>
+            <h3>
+              {{p.description}}
+            </h3>
+          </a>
+          <button onclick="if(confirm('آیا مطمئن هستید؟'))" type="submit"  name="delete" value="{{ p.id }}" class="btn btn-danger">{% trans "حذف" %}</button>
+
+
+        </div>
+
+
+
+      </div>
+    </div>
+    {% endfor %}
+  </form>
+  <br>
+  <hr>
+  <form action="{% url 'product:addproduct' user.id %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div style="display: flex; flex-direction: row">
+      <div style="margin-right: 10px">
+        <label>{% trans "دسته" %}
+          {{ productform.category_id }}
+        </label>
+      </div>
+      <div style="margin-right: 10px">
+        <label>{% trans "بارگذاری تصویر" %}
+          {{ productform.image_url }}
+        </label>
+      </div>
+    </div>
+    <div style="margin-top: 25px;display: flex;flex-direction: row">
+      <div style="margin-right: 10px">
+        <label>{% trans " نام محصول" %}
+          {{ productform.name }}
+        </label>
+      </div>
+      <div style="margin-right: 10px">
+        <label>{% trans "فارسی" %}
+          {{ productform.name_fa }}
+        </label>
+      </div>
+      <div style="margin-right: 10px">
+        <label>{% trans "انگلیسی" %}
+          {{ productform.name_en }}
+        </label>
+      </div>
+      <div style="margin-right: 10px">
+        <label>{% trans "عربی" %}
+          {{ productform.name_ar }}
+        </label>
+      </div>
+    </div>
+    <div style="margin-top: 25px;display: flex;flex-direction: row">
+
+      <div style="margin-right: 10px">
+        <label>{% trans "توضیحات" %}
+          {{ productform.description }}
+        </label>
+      </div>
+      <div style="margin-right: 10px">
+        <label>{% trans "فارسی" %}
+          {{ productform.description_fa }}
+        </label>
+      </div>
+      <div style="margin-right: 10px">
+        <label>{% trans "انگلیسی" %}
+          {{ productform.description_en }}
+        </label>
+      </div>
+      <div style="margin-right: 10px">
+        <label>{% trans "عربی" %}
+          {{ productform.description_ar }}
+        </label>
+      </div>
+
+    </div>
+    <div style="margin-top: 25px;display: flex;flex-direction: row">
+      <div style="margin-right: 10px">
+        <label>{% trans "قیمت واقعی" %}
+          {{ productform.real_price }}
+        </label>
+      </div>
+      <div style="margin-right: 10px">
+        <label>{% trans "ریال" %}
+          {{ productform.real_price_fa }}
+        </label>
+      </div>
+      <div style="margin-right: 10px">
+        <label>{% trans "دلار" %}
+          {{ productform.real_price_en }}
+        </label>
+      </div>
+      <div style="margin-right: 10px">
+        <label>{% trans "ریال عربستان" %}
+          {{ productform.real_price_ar }}
+        </label>
+      </div>
+
+    </div>
+    <div style="display: flex; flex-direction: row">
+
+      <div style="margin-right: 10px">
+        <label>{% trans "قیمت با تخفیف" %}
+          {{ productform.discount_price }}
+        </label>
+      </div>
+      <div style="margin-right: 10px">
+        <label>{% trans "ریال" %}
+          {{ productform.discount_price_fa }}
+        </label>
+      </div>
+      <div style="margin-right: 10px">
+        <label>{% trans "دلار" %}
+          {{ productform.discount_price_en }}
+        </label>
+      </div>
+      <div style="margin-right: 10px">
+        <label>{% trans "ریال عربستان" %}
+          {{ productform.discount_price_ar }}
+        </label>
+      </div>
+    </div>
+    <br>
+    <div>
+      <div style="display: flex;flex-direction: row">
+        <div><button type="submit" class="btn btn-success">{% trans "افزودن محصول" %}</button></div>
+      </div>
+    </div>
+
+  </form>
+
+</div>
+</body>
+</html>
+
